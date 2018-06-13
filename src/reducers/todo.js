@@ -1,16 +1,18 @@
 const initialState = {
-    text:'sleep'
+    todoList:[]
   }
 
 export function todos(state=initialState,action){
     switch(action.type){
         case 'add_todo':
-        console.log(state)
-            return [
-                ...state,{
-                    text:action.text
-                }
-                ];
+        let { todoList } = state;
+        todoList.push(action.payload)
+            // return [
+            //     ...state,{
+            //         todoList:[...state,action.payload]
+            //     }
+            //     ];
+            return { ...state, todoList: action.payload }
         default:
             return state;
     }

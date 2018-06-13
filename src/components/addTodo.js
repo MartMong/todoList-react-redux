@@ -8,11 +8,12 @@ class AddTodoComp extends Component{
         event.preventDefault();
         var whatTodo=(document.getElementById("todoList").value);
         this.props.add_todo(whatTodo);
+        // document.getElementById("todoList").setAttribute
     }
 
     render(){
         
-        console.log(this.props)
+        // console.log(this.props)
 
         return(
             <div>
@@ -42,7 +43,7 @@ const mapDispatchToProps  = (dispatch) => {
                 add_todo: (whatTodo)=>
                 dispatch({
                     type:'add_todo',    
-                    text:whatTodo
+                    payload:whatTodo
           
                 })
             }
