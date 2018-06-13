@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddTodo from './components/addTodo';
 import TaskTodo from './components/taskTodo';
+import SelectView from './components/selectView';
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
       <div>
         <AddTodo/>
         <TaskTodo/>
+        <SelectView/>
       </div>
       
     );
