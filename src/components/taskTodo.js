@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router';
 
 class TaskTodo extends Component{
-    editList(id){
-        console.log(id)
+    deleteList(id){
+        this.props.delete_todo(id);
     }
 
     renderList(){
@@ -14,13 +14,11 @@ class TaskTodo extends Component{
 
         return todoList.map((msg, index) => {
             
-            // let boundItemClick = this.editList.bind(this,todoList);
-            
             return (
                 <li className="collection-item" key={index}  id = {index}  >
                 
                     {msg}
-                    <button onClick = {()=>{this.editList(index)}}  >
+                    <button onClick = {()=>{this.deleteList(index)}}  >
                         edit
                     </button>
 
@@ -47,15 +45,15 @@ const mapStateToProps = (state)=>(
 );
 
 
-// const mapDispatchToProps  = (dispatch) => {
-//     return{
-//         add_todo: (whatTodo)=>
-//         dispatch({
-//             type:'add_todo',    
-//             text:whatTodo
+const mapDispatchToProps  = (dispatch) => {
+    return{
+        delete_todo: (id)=>
+        dispatch({
+            type:'delete_todo',    
+            payload:id
   
-//         })
-//     }
-// };
+        })
+    }
+};
 
-export default connect(mapStateToProps)(TaskTodo); 
+export default connect(mapStateToProps,mapDispatchToProps)(TaskTodo); 
