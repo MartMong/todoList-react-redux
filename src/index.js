@@ -13,7 +13,7 @@ const myLogger=(store)=>(next)=>(action)=>{
   }
 
  
-let store = createStore(combineReducers({todo: todos}),applyMiddleware(myLogger));
+let store = createStore(combineReducers({todo: todos}),applyMiddleware(myLogger),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 store.subscribe(()=>{
     console.log('Update Store : ',store.getState());
@@ -22,7 +22,7 @@ store.subscribe(()=>{
 ReactDOM.render(
     <Provider store={store}>
         <App />
-    </Provider>,
+    </Provider>
     
-    document.getElementById('root'));
+    ,document.getElementById('root'));
 registerServiceWorker();

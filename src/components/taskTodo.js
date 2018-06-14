@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 class TaskTodo extends Component{
     renderList(){
-        
         var { todoList } = this.props.todo;
         return todoList.map((msg, index) => {
             return (

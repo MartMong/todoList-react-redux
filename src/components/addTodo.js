@@ -8,7 +8,7 @@ class AddTodoComp extends Component{
         event.preventDefault();
         var whatTodo=(document.getElementById("todoList").value);
         this.props.add_todo(whatTodo);
-        // document.getElementById("todoList").setAttribute
+        document.getElementById("todoList").value="";
     }
 
     render(){
