@@ -1,5 +1,5 @@
 const initialState = {
-    todoList:['abc']
+    todoList:[]
   }
 
 export function todos(state=initialState,action){

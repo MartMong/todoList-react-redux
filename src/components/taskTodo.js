@@ -1,13 +1,29 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router';
 
 class TaskTodo extends Component{
+    editList(id){
+        console.log(id)
+    }
+
     renderList(){
         var { todoList } = this.props.todo;
+
+
+
         return todoList.map((msg, index) => {
+            
+            // let boundItemClick = this.editList.bind(this,todoList);
+            
             return (
-                <li className="collection-item" key={index}>
+                <li className="collection-item" key={index}  id = {index}  >
+                
                     {msg}
+                    <button onClick = {()=>{this.editList(index)}}  >
+                        edit
+                    </button>
+
                 </li>
             );
         });
@@ -15,10 +31,11 @@ class TaskTodo extends Component{
     render(){
         
         return(
-            <div>
-                taskList
+            <ul className = "collection">
                 {this.renderList()}
-            </div>
+            </ul>
+                
+            
         );
     }
 }

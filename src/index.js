@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+
+import './index.css';
+
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 import {todos} from './reducers/todo';
+
+
 
 const myLogger=(store)=>(next)=>(action)=>{
     console.log('Log Action : ',action);
@@ -21,8 +25,7 @@ store.subscribe(()=>{
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <App/>
     </Provider>
-    
     ,document.getElementById('root'));
 registerServiceWorker();
