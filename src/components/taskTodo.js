@@ -2,15 +2,6 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import Edit from './edit';
 class TaskTodo extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            showEdit:false,
-            selectedEdit:-1
-        }
-        // this.onSubmitEdit = this.onSubmitEdit.bind(this);
-    }
-
     editList(id){
         console.log('in edit');
         this.setState({showEdit:true,selectedEdit:id});
@@ -26,7 +17,9 @@ class TaskTodo extends Component{
                     <button onClick = {()=>{this.props.delete_todo(index)}}  >
                         delete
                     </button>
-                    <button onClick = {()=>{this.editList(index)}}  >
+                    <button onClick = {()=>{
+                        console.log('send on show')
+                        this.props.on_show(index)}}  >
                         edit
                     </button>
 
@@ -35,37 +28,24 @@ class TaskTodo extends Component{
         });
     }
     render(){
+        console.log(this.props.status.showStatus)
             return (
             <div>
                 <ul className = "collection">
                     {this.renderList()}
                 </ul>
-                {this.state.showEdit? <Edit id ={this.state.selectedEdit}/>
-                                    :null}
+                {this.props.status.showStatus ? <Edit/> : null}
             </div>
             );
          
     }
-
-//  AddEditBlock = () => {
-//     return(
-//         <form  > 
-//             <label>edit todo detail</label>
-//             <input id = "editTextField" onSubmit = {this.onSubmitEdit} />
-//         </form>
-
-//     )
-// }
-   
 }
-
-
-
 
 const mapStateToProps = (state)=>(
 
     {
-        todo:state.todo
+        todo:state.todo,
+        status:state.status
     }
 );
 
@@ -77,6 +57,13 @@ const mapDispatchToProps  = (dispatch) => {
             type:'delete_todo',    
             payload:id
         
+        }),
+        on_show: (index) =>
+        dispatch({
+            type:'on_show',
+            payload:{
+                id:index
+            }
         })
     }
 };

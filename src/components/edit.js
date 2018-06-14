@@ -2,28 +2,19 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 class Edit extends Component {
 
-    onSibmitEdit(event){
-        event.preventDefault();
-        console.log(this.props)
-        console.log(document.getElementById("editTextField").value);
-        console.log(this.props.id)
-        // var text =(document.getElementById("editTextField").value);
-        // this.props.edit_todo(this.state.selectedEdit,text);
-        // document.getElementById("editTextField").value="";
-    }
-
     render() {
-        return (
+        
+        // console.log(this.props.todo.todoList[this.props.status.selectedItem])
+        return (    
             <form onSubmit={(event)=>{
                 event.preventDefault();
-                // console.log(document.getElementById("editTextField").value);
-                // console.log(this.props.id)
-                // console.log(this.props)
+     
                 var text =(document.getElementById("editTextField").value);
-                this.props.edit_todo(this.props.id,text);
+                this.props.edit_todo(this.props.status.selectedItem,text);
+                this.props.off_show()
                 document.getElementById("editTextField").value="";
             }}>
-                <label>edit todo detail</label>
+                <label>Change goal :::   </label>
                 <input id="editTextField"  />
             </form>
 
@@ -31,6 +22,14 @@ class Edit extends Component {
         );
     }
 }
+
+const mapStateToProps = (state)=> (
+    {
+        status:state.status,
+        todo:state.todo
+    })
+
+;
 
 const mapDispatchToProps  = (dispatch) => {
     return{
@@ -41,8 +40,12 @@ const mapDispatchToProps  = (dispatch) => {
                 text,
                 id
             }
+        }),
+        off_show:()=>
+        dispatch({
+            type:'off_show'
         })
     }
 };
 
-export default connect(null,mapDispatchToProps)(Edit);
+export default connect(mapStateToProps,mapDispatchToProps)(Edit);

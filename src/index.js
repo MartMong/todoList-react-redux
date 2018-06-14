@@ -9,20 +9,21 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {todos} from './reducers/todo';
+import {statusEdit} from './reducers/statusEdit';
 
 
 
 const myLogger=(store)=>(next)=>(action)=>{
-    console.log('Log Action : ',action);
+    // console.log('Log Action : ',action);
     next(action);
   }
 
  
-let store = createStore(combineReducers({todo: todos}),applyMiddleware(myLogger),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+let store = createStore(combineReducers({todo: todos,status:statusEdit}),applyMiddleware(myLogger),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-store.subscribe(()=>{
-    console.log('Update Store : ',store.getState());
-  });
+// store.subscribe(()=>{
+//     console.log('Update Store : ',store.getState());
+//   });
 
 ReactDOM.render(
     <Provider store={store}>
