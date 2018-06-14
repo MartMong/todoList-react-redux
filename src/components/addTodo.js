@@ -5,6 +5,9 @@ class AddTodoComp extends Component{
 
     
     onSubmit(event){
+
+        console.log(this.props)
+
         event.preventDefault();
         var whatTodo=(document.getElementById("todoList").value);
         this.props.add_todo(whatTodo);

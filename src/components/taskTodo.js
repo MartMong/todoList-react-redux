@@ -1,18 +1,20 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router';
-
+import Edit from './edit';
 class TaskTodo extends Component{
     constructor(props){
         super(props);
         this.state={
-            showEdit:false
+            showEdit:false,
+            selectedEdit:-1
         }
+        // this.onSubmitEdit = this.onSubmitEdit.bind(this);
     }
 
     editList(id){
         console.log('in edit');
-        this.setState({showEdit:true});
+        this.setState({showEdit:true,selectedEdit:id});
+        
     }
 
     renderList(){
@@ -38,25 +40,26 @@ class TaskTodo extends Component{
                 <ul className = "collection">
                     {this.renderList()}
                 </ul>
-                {this.state.showEdit?<AddEditBlock/>:null}
+                {this.state.showEdit? <Edit id ={this.state.selectedEdit}/>
+                                    :null}
             </div>
             );
          
     }
 
+//  AddEditBlock = () => {
+//     return(
+//         <form  > 
+//             <label>edit todo detail</label>
+//             <input id = "editTextField" onSubmit = {this.onSubmitEdit} />
+//         </form>
 
+//     )
+// }
    
 }
 
-const AddEditBlock = () => {
-    return(
-        <form  > 
-            <label>edit todo detail</label>
-            <input id = "todoEdit" />
-        </form>
 
-    )
-}
 
 
 const mapStateToProps = (state)=>(
@@ -73,7 +76,7 @@ const mapDispatchToProps  = (dispatch) => {
         dispatch({
             type:'delete_todo',    
             payload:id
-  
+        
         })
     }
 };

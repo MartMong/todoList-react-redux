@@ -16,6 +16,10 @@ export function todos(state=initialState,action){
             var todoList = state.todoList;
             todoList.splice(action.payload,1);
             return {...state,todoList};
+        case 'edit_todo':
+            var todoList = state.todoList;
+            todoList[action.payload.id]=action.payload.text;
+            return {...state,todoList};
         default:
             return state;
     }
