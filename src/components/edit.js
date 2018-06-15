@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {editTodo,offShow} from '../actions/todos';
 class Edit extends Component {
 
     render() {
         
-        // console.log(this.props.todo.todoList[this.props.status.selectedItem])
         return (    
             <form onSubmit={(event)=>{
                 event.preventDefault();
@@ -31,21 +31,11 @@ const mapStateToProps = (state)=> (
 
 ;
 
-const mapDispatchToProps  = (dispatch) => {
-    return{
-        edit_todo: (id,text) =>
-        dispatch({
-            type:'edit_todo',
-            payload:{
-                text,
-                id
-            }
-        }),
-        off_show:()=>
-        dispatch({
-            type:'off_show'
-        })
+const mapDispatchToProps  = (dispatch) => (
+    {
+        edit_todo:(id,text)=>dispatch(editTodo(id,text)),
+        off_show:()=>dispatch(offShow())
     }
-};
+)
 
 export default connect(mapStateToProps,mapDispatchToProps)(Edit);

@@ -15,9 +15,6 @@ class AddTodoComp extends Component{
     }
 
     render(){
-        
-        // console.log(this.props)
-
         return(
             <div>
                 <form onSubmit  = {this.onSubmit.bind(this)} >
@@ -41,15 +38,9 @@ const mapStateToProps = (state)=>(
     }
 );
 
-const mapDispatchToProps  = (dispatch) => {
-            return{
-                add_todo: (whatTodo)=>
-                dispatch({
-                    type:'add_todo',    
-                    payload:whatTodo
-          
-                })
-            }
-        };
+const mapDispatchToProps  = (dispatch) => ({
+    add_todo:text=>dispatch(addTodo(text))
+})
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddTodoComp);
